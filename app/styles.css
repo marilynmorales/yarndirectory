@@ -37,3 +37,40 @@ header {
 .search--field-sub:last-child {
   margin-bottom: 0;
 }
+.tablet {
+  display: inline-flex;
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.tablet svg {
+  width: 12px;
+  padding-left: 4px;
+}
+@media screen and (min-width: 768px) {
+  .layout {
+    display: flex;
+  }
+  .hamburger {
+    display: none;
+  }
+  .aside {
+    width: 280px;
+  }
+  .main {
+    margin-left: 20px;
+    width: auto;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a1a;
+    color: #efefef;
+    outline: #000;
+  }
+  .tablet {
+    background-color: #000;
+  }
+}

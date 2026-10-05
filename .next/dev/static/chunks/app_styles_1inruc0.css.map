@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///home/plato/Projects/yarndir/app/styles.css"],"sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=VT323&display=swap');\nhtml {\n\tfont-size: 62.5%;\n}\nh1 {\n  font-family: \"VT323\", monospace;\n  font-weight: 400;\n  font-style: normal;\n  font-size: 2.8rem;\n  margin: 0;\n}\nbody {\n  font-family: \"Albert Sans\", sans-serif;\n  font-optical-sizing: auto;\n  font-size: 1.2rem;\n  font-weight: 400;\n  font-style: normal;\n}\n\nheader {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\talign-items: center;\n}\n.hamburger {\n\tdisplay: block;\n\twidth: 26px;\n\tcursor: pointer;\n\tmargin-top: 6px;\n}\n.layout {\n\tpadding: 10px 15px;\n}\n.search--field-sub {\n  margin-bottom: 10px;\n}\n.search--field-sub:last-child {\n  margin-bottom: 0;\n}\n"],"names":[],"mappings":"AACA;;;;AAGA;;;;;;;;AAOA;;;;;;;;AAQA;;;;;;AAKA;;;;;;;AAMA;;;;AAGA;;;;AAGA"}}]
-}

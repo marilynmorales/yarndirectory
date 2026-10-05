@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/plato/Projects/yarndir/app/layout.tsx"],"sourcesContent":["import { AdjustmentVerticalIcon } from '@heroicons/react/24/solid'\nimport \"./styles.css\"\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>\n\t<div className=\"layout\">\n\t\t<div className=\"aside\">\n      \t\t\t<h1>Yarn Directory</h1>\n\t\t\t<AdjustmentVerticalIcon />\n\t\t\tadd filters here\n\t\t</div>\n\t\t<div className=\"main\">\n\t\tmain area\n\t\t</div>\n\t</div>\n      </body>\n    </html>\n  )\n}\n"],"names":["RootLayout","children","lang","className"],"mappings":";;;;;AAAA;;;;AAGe,SAASA,WAAW,EACjCC,QAAQ,EAGT;IACC,qBACE,8OAAC;QAAKC,MAAK;kBACT,cAAA,8OAAC;sBACN,cAAA,8OAAC;gBAAIC,WAAU;;kCACd,8OAAC;wBAAIA,WAAU;;0CACR,8OAAC;0CAAG;;;;;;0CACV,8OAAC,6LAAsB;;;;;4BAAG;;;;;;;kCAG3B,8OAAC;wBAAIA,WAAU;kCAAO;;;;;;;;;;;;;;;;;;;;;;AAOxB"}}]
-}

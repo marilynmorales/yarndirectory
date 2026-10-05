@@ -26,7 +26,11 @@ type ActiveFibers = {
   }
 }
 
-export default function() { 
+type Props = {
+  onChange: Function
+}
+
+export default function({onChange: _onChange}:Props) { 
   const MIN_RANGE = 0;
   const MAX_RANGE = 100;
   const [ selected, setSelected ] = useState<string>("") 

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/plato/Projects/yarndir/app/page.tsx"],"sourcesContent":["import Filter from \"@containers/filter\";\nimport { AdjustmentsVerticalIcon } from '@heroicons/react/24/solid';\n\nexport default function Page() {\n\treturn (\n\t\t<div className=\"layout\">\n\t\t\t<div className=\"aside\">\n\t\t\t\t<header>\n\t\t\t\t<h1>Yarn Directory</h1>\n\t\t\t\t<a className=\"hamburger\">\n\t\t\t\t\t<AdjustmentsVerticalIcon />\n\t\t\t\t</a>\n\t\t\t\t</header>\n        <Filter />\n\t\t\t</div>\n\t\t\t<div className=\"main\">\n\t\t\tmain area\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n"],"names":["Page","className","Filter"],"mappings":";;;;;;;;;;AACA;;;;AAEe,SAASA;IACvB,qBACC,8OAAC;QAAIC,WAAU;;0BACd,8OAAC;gBAAIA,WAAU;;kCACd,8OAAC;;0CACD,8OAAC;0CAAG;;;;;;0CACJ,8OAAC;gCAAEA,WAAU;0CACZ,cAAA,8OAAC,sQAAuB;;;;;;;;;;;;;;;;kCAGrB,8OAACC;;;;;;;;;;;0BAEN,8OAAC;gBAAID,WAAU;0BAAO;;;;;;;;;;;;AAKzB"}}]
-}
