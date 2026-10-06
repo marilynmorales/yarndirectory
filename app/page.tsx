@@ -1,14 +1,37 @@
 'use client'
 import { useState } from "react"
-import Filter from "@containers/filter";
-import { AdjustmentsVerticalIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import Filter from "@containers/filter"
+import Tablets from "@containers/tablet"
+import { AdjustmentsVerticalIcon } from '@heroicons/react/24/solid';
+import {FilterSlugContents} from "@containers/types";
 
-function Tablets(selected) {
-  console.log("ENTER TABLETS", selected)
-  return (
-    <a tabIndex={0} className="tablet">Bulky<XMarkIcon/></a>
-  )
+const defaultSelected = {
+  "weight": {
+    "super_fine": {
+      "label": "Super Fine",
+      "value": {}
+    }
+  },
+  "name": "Hello",
+  "fibers": {
+    "camel": {
+      "label": "Camel",
+      "percentage": 40,
+      "hasRange": true
+    },
+    "alpaca": {
+      "label": "Alpaca",
+      "percentage": 0,
+      "hasRange": true
+    },
+    "wool": {
+      "label": "Wool",
+      "percentage": 60,
+      "hasRange": false
+    }
+  }
 }
+
 export default function Page() {
   const [ selected, setSelected ] = useState({})
   function toggleMenu() {
@@ -29,14 +52,17 @@ export default function Page() {
           </a>
 				</header>
         <div className="menu">
-          <Filter onChange={(selected) => {
-            setSelected(selected)
-          }} />
+          <Filter 
+            selected={selected} 
+            onChange={(selected: FilterSlugContents) => {
+              setSelected(selected)
+            }} 
+          />
         </div>
 			</div>
 			<div className="main">
       <strong>Yarn Name</strong><br />
-      <h2>{selected.name}</h2>
+      <h2>{selected["name"]}</h2>
       <Tablets selected={selected}/>
 			</div>
 		</div>

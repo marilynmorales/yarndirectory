@@ -1,59 +1,15 @@
-import type { SelectedSubs } from "./types"
+import type { SelectedSubs, SubInput } from "./types"
 import { useState, useEffect } from "react"
-type YarnWeightInput = {
-  [slug: string]: {
-    index: number,
-    label: string,
-    options: string[]
-  }
-}
-const types:YarnWeightInput = {
-  lace: {
-    index: 0,
-    label: "Lace",
-    options: ["Crochet Thread", "Fingering"]
-  },
-  super_fine: {
-    index: 1,
-    label: "Super Fine",
-    options: ["Sock", "Fingering", "Baby"]
-  },
-  fine: {
-    index: 2,
-    label: "Fine",
-    options: ["Baby", "Sport"]             
-  },
-  light: {
-    index: 3,
-    label: "Light",
-    options: ["DK", "Light Worsted"]
-  },
-  medium: {
-    index: 4,
-    label: "Medium",
-    options: ["Worsted", "Afghan", "Aran"]
-  },
-  bulky: {
-    index: 5,
-    label: "Bulky",
-    options: ["Chunky", "Craft", "Rug"]
-  },
-  super_bulky: {
-    index: 6,
-    label: "Super Bulky",
-    options: ["Super Bulky", "Roving"]
-  },
-  jumbo: {
-    index: 7,
-    label: "Jumbo",
-    options: ["Jumbo", "Roving"]
-  }
-}
-
 type Props = {
+  options: SubInput
   onChange: Function
+  name: string
 }
-export default function({onChange: _onChanged}:Props) {
+export default function({
+  onChange: _onChanged,
+  options,
+  name
+}:Props) {
   const [selected, setSelected] = useState<SelectedSubs>({})
 
   useEffect(() => {
@@ -90,19 +46,19 @@ export default function({onChange: _onChanged}:Props) {
       <legend>
         Yarn Weight
       </legend>
-      {Object.keys(types).map((type, index) => {
-        const { label, options } = types[type];
+      {Object.keys(options).map((type, index) => {
+        const { label, options:_options } = options[type];
         return (
           <div key={type} className="search--field-sub">
             <strong>{index} - {label}</strong>
-            {options.map(opt => {
+            {_options.map(opt => {
               const slug = opt.split(" ").join("_").toLowerCase();
-              const id = `search-weight--${index}-${slug}`;
+              const id = `search-${name}--${index}-${slug}`;
               return (
                 <div key={(label + slug)}>
                 <input 
                   id={id} 
-                  name={`weight[${index}][${slug}]`} 
+                  name={`${name}[${index}][${slug}]`} 
                   type="checkbox"
                   checked={selected[type]?.value.has(opt) ?? false}
                   onChange={onChange.bind(this, type, label, opt)}

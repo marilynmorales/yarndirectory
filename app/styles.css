@@ -37,9 +37,13 @@ header {
 .search--field-sub:last-child {
   margin-bottom: 0;
 }
+.tablet-group {
+  margin-bottom: 10px;
+}
 .tablet {
   display: inline-flex;
   padding: 5px 10px;
+  margin: 0 5px 0;
   background-color: #eee;
   border-radius: 20px;
   cursor: pointer;
