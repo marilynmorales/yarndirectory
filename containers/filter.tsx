@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect } from "react"
 import FilterInput from "./filter-input"
 import FilterSub from "./filter-sub"
 import FilterSelectionRange from "./filter-selection-range"
-import type { SelectedSubs, SubInput, SelectionRange, FilterSelected, RangeSelections, FilterSlugContents } from "./types"
+import type { SelectedSubs, SubInput, SelectionRange, RangeSelections, FilterSelected } from "./types"
 
 type Props = {
   onChange: Function,
-  selected: FilterSlugContents
+  selected: FilterSelected
 }
 
 const types:SubInput = {
@@ -66,16 +65,7 @@ const fibers:RangeSelections = {
   }
 }
 
-export default function Filter({onChange, selected: _selected}:Props) {
-  const [ selected, setSelected ] = useState<FilterSelected>({})
-
-  useEffect(() => {
-    onChange(selected)
-  }, [])
-  
-  useEffect(() => {
-    onChange(selected)
-  }, [selected])
+export default function Filter({onChange, selected}:Props) {
 
   function setSelectedHelper(name:string, selections: SelectedSubs | SelectionRange) {
     let uselected = structuredClone(selected);
@@ -83,24 +73,27 @@ export default function Filter({onChange, selected: _selected}:Props) {
     if(uselected[name] && Object.keys(uselected[name]).length === 0) {
       delete uselected[name]
     }
-    setSelected(uselected)
+    onChange(uselected)
   } 
+
   return (
     <form autoComplete="off">
       <FilterInput
         onChange={((_name:string,value:string) => {
           let _selected = structuredClone(selected)
           _selected[_name]=value;
-          setSelected(_selected)
+          onChange(_selected)
         })}
       />
       <FilterSub 
+        selected={selected["weight"] as SelectedSubs}
         name="weight"
         options={types}
         onChange={setSelectedHelper.bind(this, "weight")}
       />
       <FilterSelectionRange 
         selections={fibers}
+        selected={selected["fibers"] as SelectionRange}
         label="Fibers"
         placeholder="Choose a fiber"
         name="fibers"

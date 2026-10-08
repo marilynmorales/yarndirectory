@@ -3,16 +3,15 @@ import { useState } from "react"
 import Filter from "@containers/filter"
 import Tablets from "@containers/tablet"
 import { AdjustmentsVerticalIcon } from '@heroicons/react/24/solid';
-import {FilterSlugContents} from "@containers/types";
+import {FilterSelected} from "@containers/types";
 
-const defaultSelected = {
+const defaultSelected:FilterSelected = {
   "weight": {
     "super_fine": {
       "label": "Super Fine",
-      "value": {}
+      "value": new Set(["Sock","Baby"])
     }
   },
-  "name": "Hello",
   "fibers": {
     "camel": {
       "label": "Camel",
@@ -33,7 +32,7 @@ const defaultSelected = {
 }
 
 export default function Page() {
-  const [ selected, setSelected ] = useState({})
+  const [ selected, setSelected ] = useState(defaultSelected)
   function toggleMenu() {
   
   }
@@ -54,7 +53,7 @@ export default function Page() {
         <div className="menu">
           <Filter 
             selected={selected} 
-            onChange={(selected: FilterSlugContents) => {
+            onChange={(selected: FilterSelected) => {
               setSelected(selected)
             }} 
           />
@@ -62,8 +61,13 @@ export default function Page() {
 			</div>
 			<div className="main">
       <strong>Yarn Name</strong><br />
-      <h2>{selected["name"]}</h2>
-      <Tablets selected={selected}/>
+      <h2>{selected["name"] as string}</h2>
+      <Tablets 
+        selected={selected}
+        onChange={(selected) => {
+          setSelected(selected)
+        }}
+      />
 			</div>
 		</div>
 	);

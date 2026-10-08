@@ -1,20 +1,17 @@
 import type { SelectedSubs, SubInput } from "./types"
-import { useState, useEffect } from "react"
 type Props = {
   options: SubInput
   onChange: Function
   name: string
+  selected: SelectedSubs
 }
 export default function({
-  onChange: _onChanged,
+  onChange: _onChange,
   options,
-  name
+  name,
+  selected
 }:Props) {
-  const [selected, setSelected] = useState<SelectedSubs>({})
 
-  useEffect(() => {
-    _onChanged(selected);
-  }, [selected])
   function onChange(
     slug_type:string,
     label: string,
@@ -38,9 +35,8 @@ export default function({
         value: new Set([value])
       }
     }
-    setSelected(_selected)
+    _onChange(_selected)
   }
-  
   return (
     <fieldset>
       <legend>
@@ -52,6 +48,7 @@ export default function({
           <div key={type} className="search--field-sub">
             <strong>{index} - {label}</strong>
             {_options.map(opt => {
+              console.log(opt, type, selected)
               const slug = opt.split(" ").join("_").toLowerCase();
               const id = `search-${name}--${index}-${slug}`;
               return (
@@ -60,7 +57,7 @@ export default function({
                   id={id} 
                   name={`${name}[${index}][${slug}]`} 
                   type="checkbox"
-                  checked={selected[type]?.value.has(opt) ?? false}
+                  checked={selected && selected[type]?.value.has(opt) ? true : false}
                   onChange={onChange.bind(this, type, label, opt)}
                 />
                 <label htmlFor={id}>{opt}</label>

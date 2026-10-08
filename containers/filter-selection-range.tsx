@@ -4,6 +4,7 @@ import type { RangeSelections, SelectionRange } from "./types"
 type Props = {
   onChange: Function
   selections: RangeSelections
+  selected: SelectionRange
   min: number
   max: number
   name: string
@@ -14,6 +15,7 @@ type Props = {
 export default function({
   onChange: _onChange, 
   selections,
+  selected: activeSelection,
   min, 
   max,
   label,
@@ -24,12 +26,7 @@ export default function({
   const MAX_RANGE = max;
   const [ selected, setSelected ] = useState<string>("") 
   const [ acc, setAcc ] = useState<number>(0);
-  const [ activeSelection, setActiveSelection] = useState<SelectionRange>({});
 
-  useEffect(() => {
-    _onChange(activeSelection)
-  }, [])
-  
   useEffect(() => {
     let _acc = 0;
     for(const active in activeSelection) {
@@ -46,19 +43,19 @@ export default function({
     const { target } = e;
     const updatedSelection = structuredClone(activeSelection)
     updatedSelection[name].percentage = target.valueAsNumber;
-    setActiveSelection(updatedSelection);
+    _onChange(updatedSelection);
   }
   function onRangeChange(name: string, e: React.ChangeEvent<HTMLInputElement>) {
     const checked = e.target.checked;
     const updatedSelection = structuredClone(activeSelection)
     updatedSelection[name].hasRange = checked;
-    setActiveSelection(updatedSelection);
+    _onChange(updatedSelection);
   }
 
   function onRemove(name: string, _e: React.MouseEvent<HTMLButtonElement>) {
     const updatedSelection = structuredClone(activeSelection)
     delete updatedSelection[name]
-    setActiveSelection(updatedSelection)
+    _onChange(updatedSelection)
   }
   
   return (
@@ -89,7 +86,7 @@ export default function({
             percentage: 100 - acc,
             hasRange: true
           }
-          setActiveSelection(updatedActiveSelection)
+          _onChange(updatedActiveSelection)
           setSelected("")
       }}>Add To List</button>
       {Object.keys(activeSelection).map(selection => {
@@ -102,6 +99,7 @@ export default function({
               onChange={onChange.bind(this, selection)}
               name={`${name}-${selection}-percentage`} 
               value={percentage}
+              disabled={!hasRange}
               min={MIN_RANGE}
               max={MAX_RANGE} 
             />
@@ -111,6 +109,7 @@ export default function({
               id={`${name}[${selection}][percentage_number]`} 
               name={`${name}-${selection}-percentage_number`} 
               value={percentage}
+              disabled={!hasRange}
               min={MIN_RANGE} 
               max={MAX_RANGE} 
             />
